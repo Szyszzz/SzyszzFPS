@@ -33,9 +33,6 @@ public class TestInputSystem : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
 
-        sensitivity_Vert = VerticalViewSensitivity * 100;
-        sensitivity_Hor = HorizontalViewSensitivity * 100;
-
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
 
@@ -45,7 +42,12 @@ public class TestInputSystem : MonoBehaviour
 
     private void Update()
     {
-        Vector2 inputVector = playerInputActions.Player.View.ReadValue<Vector2>();
+
+        sensitivity_Vert = VerticalViewSensitivity * 100;
+        sensitivity_Hor = HorizontalViewSensitivity * 100;
+
+        Vector2 inputVector = playerInputActions.Player.View.ReadValue<Vector2>() * 0.1f;
+        Debug.Log(inputVector);
         inputVector = SmoothInput(inputVector);
         View_VertRotation(inputVector);
         Body_HorRotation(inputVector);
@@ -68,7 +70,7 @@ public class TestInputSystem : MonoBehaviour
 
     private void View_VertRotation(Vector2 input)
     {
-        float playerInput = input.y * verticalSpeed * sensitivity_Vert * Time.deltaTime;
+        float playerInput = input.y * sensitivity_Vert * Time.deltaTime;
         VerticalAngle = Mathf.Clamp(playerInput + VerticalAngle, VerticalLimits.x, VerticalLimits.y);
 
         if(InvertControl)
@@ -79,7 +81,7 @@ public class TestInputSystem : MonoBehaviour
 
     private void Body_HorRotation(Vector2 input)
     {
-        float playerInput = input.x * horizontalSpeed * sensitivity_Hor * Time.deltaTime;
+        float playerInput = input.x * sensitivity_Hor * Time.deltaTime;
         HorizontalAngle += playerInput;
         HorizontalAngle %= 360;
 

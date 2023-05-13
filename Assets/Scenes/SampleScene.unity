@@ -466,8 +466,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ViewObject: {fileID: 1197886844}
   deadzone: 0.1
-  VerticalViewSensitivity: 2
-  HorizontalViewSensitivity: 2
+  VerticalViewSensitivity: 4
+  HorizontalViewSensitivity: 4
   verticalSpeed: 1
   horizontalSpeed: 1
   VerticalLimits: {x: -85, y: 85}
@@ -507,7 +507,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &832575518
 MonoBehaviour:
   m_ObjectHideFlags: 0
