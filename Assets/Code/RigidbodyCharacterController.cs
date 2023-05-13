@@ -5,7 +5,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class TestInputSystem : MonoBehaviour
+public class RigidbodyCharacterController : MonoBehaviour
 {
     [Header("Objects")]
     [SerializeField] private GameObject ViewObject;
@@ -14,8 +14,6 @@ public class TestInputSystem : MonoBehaviour
     [SerializeField] private float deadzone;
     [SerializeField][Range(0.01f,10f)] private float VerticalViewSensitivity = 2.5f;
     [SerializeField][Range(0.01f, 10f)] private float HorizontalViewSensitivity = 2.5f;
-    [SerializeField] private float verticalSpeed = 1f;
-    [SerializeField] private float horizontalSpeed = 1f;
     [SerializeField] private Vector2 VerticalLimits;
     public bool InvertControl = false;
 
@@ -42,7 +40,12 @@ public class TestInputSystem : MonoBehaviour
 
     private void Update()
     {
+        PerformRotations();
+        
+    }
 
+    private void PerformRotations()
+    {
         sensitivity_Vert = VerticalViewSensitivity * 100;
         sensitivity_Hor = HorizontalViewSensitivity * 100;
 
